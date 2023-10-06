@@ -1,0 +1,131 @@
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+  "email": "<script>alert('XSS Email Attack');</script>",
+  "username": "testuser new",
+  "password": "password123",
+  "confirmPassword": "password123"
+}
+
+####
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+  "email": "alfin@example.com",
+  "username": "alfin0224",
+  "password": "password123",
+  "confirmPassword": "password123"
+}
+
+
+####
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+  "usernameOrEmail": "testuser@example.com",
+  "password": "password123"
+}
+
+####
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+  "usernameOrEmail": "alfin@example.com",
+  "password": "password123"
+}
+
+####
+POST http://localhost:3000/api/createProfile
+Content-Type: application/json
+
+{
+  "fullName": "John Doe",
+  "gender": "Male",
+  "birthday": "1990-01-15",
+  "heightInches": 72,
+  "weightKG": 75,
+  "interests": ["Reading", "Hiking"]
+}
+
+####
+GET http://localhost:3000/api/getUser/65182cf7439dba33bf74ef85
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwic3ViIjoiNjUxODJjZjc0MzlkYmEzM2JmNzRlZjg1IiwiaWF0IjoxNjk2MTEwODMxLCJleHAiOjE2OTYxMTQ0MzF9.idUiC-TwH6dz1wQNdnBCIix1RB765St5Ae_BPluu5v4
+
+####
+PUT http://localhost:3000/api/updateProfile/65182cf7439dba33bf74ef85
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTE4MmNmNzQzOWRiYTMzYmY3NGVmODUiLCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWF0IjoxNjk2Mzk5NDM2LCJleHAiOjE2OTYzOTk3MzZ9.iihuoy6GjoMzkjI1IirO1VLJayIV16PlJHwGao0Bz8M
+Content-Type: application/json
+
+{
+  "fullName": "John Doe",
+  "gender": "Male",
+  "birthday": "1990-11-15",
+  "heightCentimeters": 172,
+  "weightKG": 75,
+  "interests": ["Reading", "Hiking"]
+}
+
+
+####
+PUT http://localhost:3000/api/updateProfile/651a29fd2544c972ec82a600
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTFhMjlmZDI1NDRjOTcyZWM4MmE2MDAiLCJpYXQiOjE2OTYyOTk0MDQsImV4cCI6MTY5NjMwMDAwNH0.mdFNoCgXpToXapgJWU4G0VyiEtLR6Mjs2rLir8JZMqA
+Content-Type: application/json
+
+{
+  "fullName": "Muhammad Alfienda",
+  "gender": "Male",
+  "birthday": "1997-02-24",
+  "heightInches": 72,
+  "weightKG": 75,
+  "interests": ["Jazz Music", "Gym", "Reading"]
+}
+
+####
+POST http://localhost:3000/api/65182cf7439dba33bf74ef85/addInterest
+Content-Type: application/json
+
+{
+  "interests": ["Cooking", "Swimming"]
+}
+
+####
+POST http://localhost:3000/api/removeInterest
+Content-Type: application/json
+
+{
+  "interests": ["Hiking"]
+}
+
+
+
+### @name Send Message
+POST http://localhost:3000/api/messages/65182cf7439dba33bf74ef85/651a29fd2544c972ec82a600
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwic3ViIjoiNjUxODJjZjc0MzlkYmEzM2JmNzRlZjg1IiwiaWF0IjoxNjk2MjI0MzMyLCJleHAiOjE2OTYyMjc5MzJ9.966qo334_w4sydDAA7J4b3lF1ilEslkagnusZKOA_So
+Content-Type: application/json
+
+{
+  "content": "Ini adalah pesan keempat untuk test kirim"
+}
+
+####
+GET http://localhost:3000/api/messages/651a29fd2544c972ec82a600
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTFhMjlmZDI1NDRjOTcyZWM4MmE2MDAiLCJ1c2VybmFtZSI6ImFsZmluMDIyNCIsImlhdCI6MTY5NjUwMzU3MiwiZXhwIjoxNjk2NTAzODcyfQ.vkvKl1yf7NQ5CoFVq8iN3Sfih5dK4cANUi5xczPv2Cw
+
+
+####
+GET http://localhost:3000/api/messages/inbox/651a29fd2544c972ec82a600
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZmluMDIyNCIsInN1YiI6IjY1MWEyOWZkMjU0NGM5NzJlYzgyYTYwMCIsImlhdCI6MTY5NjIyNDQ3NiwiZXhwIjoxNjk2MjI4MDc2fQ.y2RycfehKszRXsVeBc_WuDGCrj46wlsSw3ndehStKYE
+
+
+####
+POST http://localhost:3000/api/refresh-token
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTFhMjlmZDI1NDRjOTcyZWM4MmE2MDAiLCJpYXQiOjE2OTYyOTc1MDAsImV4cCI6MTY5NjMwMTEwMH0.QtDeD_zbw66waQUUIGXdxZmuoP0uhOeq7rvczUf61nI
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTFhMjlmZDI1NDRjOTcyZWM4MmE2MDAiLCJpYXQiOjE2OTYyOTc1MDAsImV4cCI6MTY5NjMwMTEwMH0.QtDeD_zbw66waQUUIGXdxZmuoP0uhOeq7rvczUf61nI"
+}
